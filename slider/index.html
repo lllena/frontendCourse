@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="slider-style.css" />
     <title>Document</title>
   </head>
   <body>
@@ -12,36 +13,41 @@
       <!-- обертка для слайдов -->
       <div class="slider-wrapper">
         <!-- слайды -->
-        <div class="slider-item">Slide1</div>
+        <div class="slider-item slider-item-active">Slide1</div>
         <div class="slider-item">Slide2</div>
         <div class="slider-item">Slide3</div>
         <div class="slider-item">Slide4</div>
         <div class="slider-item">Slide5</div>
+        <div class="slider-item">Slide6</div>
       </div>
 
       <!-- навигация слайдера -->
       <div class="slider-dots"></div>
 
       <!-- управление слайдами -->
-      <div class="slider-arrow slider-arrow--prev"><</div>
-      <div class="slider-arrow slider-arrow--next">></div>
+      <a href="#" class="slider-arrow slider-arrow--prev" id="arrow-left"></a>
+      <a href="#" class="slider-arrow slider-arrow--next" id="arrow-right"></a>
+      <!-- <div class="slider-arrow slider-arrow--prev"><</div>
+      <div class="slider-arrow slider-arrow--next">></div> -->
     </div>
 
     <script src="slider-plagin.js"></script>
     <script>
-      const slider = new Slider({
-        infinite: true,
-        slidesToShow: 5,
-        slidesToScrool: 1,
-        autoplay: true,
-        dots: true,
-        pauseOnHover: true,
-        pauseOnDotsHover: true,
-        speed: 1500,
-        autoplaySpeed: 1500,
-        centerMode: false,
-        fade: false,
-      });
+      const slider = new Slider(
+        {
+          widthContainer: 500,
+          heightContainer: 300,
+        },
+        {
+          infinite: true,
+          slidesToShow: 3,
+          slidesToScrool: 1,
+          autoplay: true,
+          pauseOnHover: true,
+          speed: 1,
+          autoplaySpeed: 3000,
+        }
+      );
       slider.init();
     </script>
   </body>
