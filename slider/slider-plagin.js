@@ -10,7 +10,7 @@ class Slider {
       pauseOnHover = true,
       pauseOnDotsHover = true,
       speed = 500,
-      autoplaySpeed = 1500
+      autoplaySpeed = 1500,
     }
   ) {
     this.infinite = infinite;
