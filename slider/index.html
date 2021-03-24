@@ -23,15 +23,15 @@
       <div class="slider-dots"></div>
 
       <!-- управление слайдами -->
-      <div class="slider-arrow slider-arrow--prev"></div>
-      <div class="slider-arrow slider-arrow--next"></div>
+      <div class="slider-arrow slider-arrow--prev"><</div>
+      <div class="slider-arrow slider-arrow--next">></div>
     </div>
 
     <script src="slider-plagin.js"></script>
     <script>
       const slider = new Slider({
         infinite: true,
-        slidesToShow: 1,
+        slidesToShow: 5,
         slidesToScrool: 1,
         autoplay: true,
         dots: true,
@@ -39,9 +39,10 @@
         pauseOnDotsHover: true,
         speed: 1500,
         autoplaySpeed: 1500,
-        centerMode: boolean,
-        fade: boolean,
+        centerMode: false,
+        fade: false,
       });
+      slider.init();
     </script>
   </body>
 </html>
