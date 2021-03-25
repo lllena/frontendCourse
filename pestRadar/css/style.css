@@ -401,7 +401,7 @@ body {
       -ms-flex-pack: justify;
           justify-content: space-between;
   height: 56px;
-  padding: 0 45px 0 31px;
+  padding: 0 31px;
   font-family: 'San Francisco Pro Display Regular';
   position: fixed;
   top: 0;
@@ -436,7 +436,7 @@ body {
 }
 
 .navbar-item {
-  padding: 20px;
+  padding: 10px;
 }
 
 .navbar-item--user {
@@ -566,5 +566,78 @@ body {
 
 .tag--red {
   background-color: #E02020;
+}
+
+.footer {
+  position: fixed;
+  bottom: 10px;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  color: #697C8A;
+  width: 100%;
+}
+
+.footer-wrapper {
+  padding: 0 40px 0 600px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.footer-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.footer-button {
+  background-color: #1549EB;
+  color: #FFFFFF;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 20px;
+  height: 32px;
+  border: none;
+}
+
+.footer-button--save {
+  padding: 0 10px 0 0;
+}
+
+.pages {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.page {
+  margin: 5px;
+  padding: 6px 10px;
+}
+
+.page-active {
+  background-color: #697C8A;
+  border-radius: 3px;
+  color: #FFFFFF;
 }
 /*# sourceMappingURL=style.css.map */
