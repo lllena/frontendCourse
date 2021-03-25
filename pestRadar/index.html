@@ -9,6 +9,7 @@
     <title>Pest Radar</title>
   </head>
   <body>
+    <!-- navbar -->
     <nav class="navbar">
       <a href="#" class="navbar-brand">
         <span class="navbar-brand--logo">
@@ -20,16 +21,37 @@
         <li class="navbar-item">
           <input type="text" placeholder="Search" class="navbar-item--search" />
         </li>
-        <li class="navbar-item navbar-item--user">
-          <span class="navbar-item--avatar"
-            ><img src="img/user-avatar.svg" alt="Icons: user-avatar"
-          /></span>
-          <span class="navbar-item--name">Astarta Company</span>
+        <li class="navbar-item">
+          <a href="#" class="navbar-item--user">
+            <span class="navbar-item--avatar"
+              ><img src="img/user-avatar.svg" alt="Icons: user-avatar"
+            /></span>
+            <span class="navbar-item--name">Astarta Company</span>
+          </a>
         </li>
         <li class="navbar-item navbar-item--log">
           <a href="#" class="log-out">Log Out</a>
         </li>
       </ul>
     </nav>
+    <!--nav-menu -->
+    <section>
+      <div class="menu">
+        <nav class="menu-wrapper">
+          <ul class="menu-list">
+            <li class="menu-item"><a href="#">Dashboard</a></li>
+            <li class="menu-item menu-item--active"><a href="#">Events</a></li>
+            <li class="menu-item"><a href="#">Modules</a></li>
+            <li class="menu-item"><a href="#">Settings</a></li>
+          </ul>
+        </nav>
+        <div class="support">
+          <a href="#" class="support-item">
+            <img src="img/tel.svg" alt="icon: Tel" class="support-icon" />
+            <span class="support-text">Support</span>
+          </a>
+        </div>
+      </div>
+    </section>
   </body>
 </html>

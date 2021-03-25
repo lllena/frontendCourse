@@ -377,6 +377,10 @@ a {
   color: inherit;
 }
 
+body {
+  position: relative;
+}
+
 @font-face {
   font-family: 'San Francisco Pro Display Regular';
   src: url("../fonts/SFPro/SFProDisplay-Regular.eot");
@@ -396,8 +400,13 @@ a {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 0 45px 0 30px;
+  height: 56px;
+  padding: 0 45px 0 31px;
   font-family: 'San Francisco Pro Display Regular';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
 }
 
 .navbar-brand {
@@ -456,5 +465,57 @@ a {
   padding: 7px 0 7px 30px;
   background-color: #EEF4F8;
   font-size: 17px;
+}
+
+.menu {
+  background-color: #14234F;
+  position: fixed;
+  top: 56px;
+  left: 0;
+  width: 260px;
+  height: 100%;
+  font-family: 'San Francisco Pro Display Regular';
+  font-size: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.menu-item {
+  border-bottom: solid 1px;
+  border-color: #979797;
+  padding: 20px 0 20px 38px;
+  color: #FFFFFF;
+  opacity: 0.8;
+}
+
+.menu-item--active {
+  opacity: 1;
+}
+
+.support {
+  color: #FFFFFF;
+  padding-left: 31px;
+  padding-bottom: 58px;
+}
+
+.support-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.support-icon {
+  padding: 7px;
 }
 /*# sourceMappingURL=style.css.map */
