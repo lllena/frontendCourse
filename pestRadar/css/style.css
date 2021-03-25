@@ -518,4 +518,53 @@ body {
 .support-icon {
   padding: 7px;
 }
+
+.content {
+  margin-left: 260px;
+  margin-top: 56px;
+  padding: 18px;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 40px 170px 195px 65px 70px 110px auto;
+      grid-template-columns: 40px 170px 195px 65px 70px 110px auto;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+}
+
+.content-item {
+  padding: 16px;
+  color: #1F3B51;
+  background-color: #EEF4F8;
+}
+
+.content-item:nth-child(2n) {
+  background-color: #FFFFFF;
+}
+
+.content-item--center {
+  text-align: center;
+}
+
+.content-flag {
+  width: 18px;
+  height: 14px;
+}
+
+.content-location, .content-getTime {
+  font-family: 'San Francisco Pro Display Regular';
+}
+
+.content-icon {
+  padding-left: 10px;
+}
+
+.tag {
+  background-color: #697C8A;
+  padding: 4px 5px;
+  color: #FFFFFF;
+}
+
+.tag--red {
+  background-color: #E02020;
+}
 /*# sourceMappingURL=style.css.map */

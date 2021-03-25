@@ -1,0 +1,29 @@
+.content
+    margin-left: 260px
+    margin-top: 56px
+    padding: 18px
+    display: grid
+    grid-template-columns: 40px 170px 195px 65px 70px 110px auto
+    font-family: "Roboto", sans-serif
+    font-size: 16px 
+    &-item
+        padding: 16px
+        color: $font
+        background-color: $dark
+        &:nth-child(2n)
+            background-color: $light
+        &--center
+            text-align: center
+    &-flag
+        width: 18px
+        height: 14px
+    &-location, &-getTime
+        font-family: 'San Francisco Pro Display Regular'
+    &-icon
+        padding-left: 10px 
+.tag
+    background-color: $tagDark
+    padding: 4px 5px 
+    color: $light 
+    &--red
+        background-color: $tagRed
