@@ -525,8 +525,8 @@ body {
   padding: 18px;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 40px 170px 195px 65px 70px 110px auto;
-      grid-template-columns: 40px 170px 195px 65px 70px 110px auto;
+  -ms-grid-columns: 4% 18% 20% 8% 8% 12% auto;
+      grid-template-columns: 4% 18% 20% 8% 8% 12% auto;
   font-family: "Roboto", sans-serif;
   font-size: 16px;
 }
@@ -575,10 +575,17 @@ body {
   font-size: 14px;
   color: #697C8A;
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0 38px;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
 
 .footer-wrapper {
-  padding: 0 40px 0 600px;
+  width: 700px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
