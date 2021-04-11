@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.min.css" />
+    <title>Slider carousel</title>
+  </head>
+  <body>
+    <div id="companies" class="companies">
+      <div class="container">
+        <h2>Нам доверяют</h2>
+        <div class="underline"></div>
+        <div class="companies-wrapper">
+          <div class="companies-hor">
+            <div class="companies-hor-item"><img src="companies/companies-1.png" alt="" /></div>
+            <div class="companies-hor-item"><img src="companies/companies-2.png" alt="" /></div>
+            <div class="companies-hor-item"><img src="companies/companies-3.png" alt="" /></div>
+            <div class="companies-hor-item"><img src="companies/companies-4.png" alt="" /></div>
+            <div class="companies-hor-item"><img src="companies/companies-5.png" alt="" /></div>
+            <div class="companies-hor-item"><img src="companies/companies-6.png" alt="" /></div>
+            <div class="companies-hor-item"><img src="companies/companies-7.png" alt="" /></div>
+            <div class="companies-hor-item"><img src="companies/companies-8.png" alt="" /></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="plagin-slider.js"></script>
+    <script>
+      const slider = new Slider({
+        main: '.companies-wrapper',
+        wrap: '.companies-hor',
+        classArrow: '.slider-arrow',
+        infinity: true,
+        slidesToShow: 4,
+      });
+      slider.init();
+    </script>
+  </body>
+</html>

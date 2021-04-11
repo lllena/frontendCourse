@@ -1,0 +1,33 @@
+body{
+  text-align: center;
+}
+.underline {
+  display: inline-block;
+  border-bottom: 1px solid #19b5fe;
+  width: 38rem;
+  margin-bottom: 3rem;
+}
+h2 {
+  font-size: 3.6rem;
+  font-weight: 300;
+  margin-bottom: 2rem;
+}
+
+.companies {
+  padding: 5rem;
+}
+.companies-wrapper{
+  position: relative;
+}
+.companies .companies-hor {
+  width: 100%;
+  margin-bottom: 6.4rem;
+}
+.companies .companies-hor-item {
+  margin: 0 1.2rem;
+  display: inline-block;
+  height: 140px;
+}
+.companies img {
+  vertical-align: middle;
+}
