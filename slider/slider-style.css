@@ -5,7 +5,6 @@
   padding: 0;
   overflow: hidden;
   vertical-align: middle;
-  border: 2px solid rgb(184, 140, 140);
 }
 .slider-wrapper {
   width: 100%;
@@ -39,4 +38,6 @@
   background-image: url(icons/right-arrow.svg);
   background-position: 75% 50%;
 }
-
+.slider-item {
+  border: none;
+}
