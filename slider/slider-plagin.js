@@ -47,7 +47,6 @@ class Slider {
             flex: 0 0 ${this.maxSlides}%;
         }
         .slider-item {
-            border: 2px solid red;
             opacity: ${this.fade};
         }
         .slider-arrow--next{
