@@ -1,11 +1,21 @@
 {
-  "name": "webpack",
+  "name": "webpack-course",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
   },
   "author": "Lena Lutchencko",
-  "license": "ISC"
+  "license": "ISC",
+  "keywords": [
+    "js",
+    "webpack"
+  ],
+  "devDependencies": {
+    "webpack": "^5.33.2",
+    "webpack-cli": "^4.6.0"
+  },
+  "dependencies": {},
+  "description": ""
 }
