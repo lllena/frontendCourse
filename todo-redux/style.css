@@ -104,6 +104,7 @@ body {
   border-radius: 5px;
   position: relative;
   padding: 14px 100px 14px 14px;
+  margin: 10px 0;
 }
 .todo-buttons {
   display: flex;
@@ -127,7 +128,8 @@ body {
 .todo-remove {
   background-image: url('./img/trash.png');
 }
-.uncheck {
+
+.todo-complete {
   background-image: url('./img/uncheck.png');
 }
 .check {
