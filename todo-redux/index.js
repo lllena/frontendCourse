@@ -3,6 +3,9 @@
 class Todo {
   constructor() {
     this.input = document.querySelector('.input');
+    this.executeBtn = document.querySelector('.button-execute');
+    this.completedBtn = document.querySelector('.button-completed');
+    this.allBtn = document.querySelector('.button-all');
     this.inputField = document.querySelector('.input-field');
     this.todoList = document.querySelector('.todo-list');
     this.todoData = new Map(JSON.parse(localStorage.getItem('toDoList')));
@@ -11,6 +14,7 @@ class Todo {
     localStorage.setItem('toDoList', JSON.stringify([...this.todoData]));
   }
   render() {
+    this.inputField.value = '';
     this.todoList.textContent = '';
     this.todoData.forEach(this.createItem, this);
     this.addToStorage();
@@ -72,7 +76,7 @@ class Todo {
   }
 
   handler() {
-    let main = document.querySelector('.todo-container');
+    let main = document.querySelector('.main');
     main.addEventListener('click', ({ target }) => {
       const key = target.closest('.todo-item')?.getAttribute('data-id');
       if (target.classList.value.split(' ')['0'] === 'todo-complete') {
@@ -80,6 +84,19 @@ class Todo {
       }
       if (target.classList.value === 'todo-remove') {
         this.deleteItem(key);
+      }
+      if (target === this.executeBtn) {
+        console.log('execute');
+        // this.arrExecuteItem();
+        for (const [key, value] of this.todoData) {
+          console.log(value.completed);
+        }
+      }
+      if (target === this.completedBtn) {
+        console.log('completed');
+      }
+      if (target === this.allBtn) {
+        this.render();
       }
     });
   }
