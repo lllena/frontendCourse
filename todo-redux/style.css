@@ -41,7 +41,8 @@ body {
   font-size: 25px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-.main {
+.main,
+.head {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -134,4 +135,7 @@ body {
 }
 .check {
   background-image: url('./img/check.png');
+}
+.green {
+  background-color: greenyellow;
 }

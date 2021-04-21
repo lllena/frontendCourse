@@ -1,4 +1,4 @@
-import { EXECUTE, COMPLETED, ALL } from './types';
+import {  EXECUTE, COMPLETED, ALL } from './types';
 
 export function execute() {
   return {
@@ -16,3 +16,4 @@ export function all() {
     type: ALL,
   };
 }
+

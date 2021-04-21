@@ -19,17 +19,22 @@ class Todo {
   }
   render() {
     this.store.subscribe(() => {
-      this.state = todo.store.getState();
+      this.state = this.store.getState();
     });
-    this.inputField.value = '';
     this.todoList.textContent = '';
     this.todoData.forEach(this.filterItem.bind(this), this);
     this.addToStorage();
+  }
+  clearItems() {
+    this.todoData.forEach((item) => {
+      item.repeat = false;
+    });
   }
   createElement(todo, check) {
     const li = document.createElement('li');
     li.setAttribute('data-id', todo.key);
     li.classList.add('todo-item');
+    if (todo.repeat) li.classList.add('green');
     li.insertAdjacentHTML(
       'beforeend',
       `<span class="text-todo">${todo.value}</span>
@@ -66,11 +71,29 @@ class Todo {
       const newTodo = {
         value: this.inputField.value,
         completed: false,
+        repeat: false,
         key: this.generateKey(),
       };
       this.todoData.set(newTodo.key, newTodo);
+      this.inputField.value = '';
+      this.todoData.forEach((item) => {
+        item.repeat = false;
+      });
       this.render();
     }
+  }
+  searchItem(e) {
+    const reg = new RegExp(e.target.value, true ? 'gi' : '');
+    this.todoData.forEach((item) => {
+      if (item.value.match(reg) && this.inputField.value != '') {
+        this.store.dispatch(all());
+        item.repeat = true;
+        this.render();
+      } else {
+        item.repeat = false;
+        this.render();
+      }
+    });
   }
   generateKey() {
     return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
@@ -124,11 +147,11 @@ class Todo {
   init() {
     this.input.addEventListener('submit', this.addTodo.bind(this));
     this.render();
+    this.input.addEventListener('input', this.searchItem.bind(this));
   }
 }
 
 const todo = new Todo();
 todo.init();
 todo.handler();
-
 todo.store.dispatch({ type: 'all' });
