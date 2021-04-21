@@ -1,3 +1,4 @@
+import '../style.css';
 import { createStore } from '../node_modules/redux';
 import { createReducer } from './rootReducer';
 import { execute, completed, all } from './actions';

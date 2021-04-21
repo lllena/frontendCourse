@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "webpack serve --open"
+    "dev": "webpack serve --open",
+    "build": "webpack"
   },
   "author": "Lena Lutchencko",
   "license": "ISC",
