@@ -1,9 +1,10 @@
-'use strict';
-// import { rootReducer } from './createStore';
+import { createStore } from '../node_modules/redux';
+import { createReducer } from './rootReducer';
+import { execute, completed, all } from './actions';
 
 class Todo {
   constructor() {
-    // this.store = createStore(rootReducer);
+    this.store = createStore(createReducer);
     this.input = document.querySelector('.input');
     this.executeBtn = document.querySelector('.button-execute');
     this.completedBtn = document.querySelector('.button-completed');
@@ -11,15 +12,18 @@ class Todo {
     this.inputField = document.querySelector('.input-field');
     this.todoList = document.querySelector('.todo-list');
     this.todoData = new Map(JSON.parse(localStorage.getItem('toDoList')));
-    this.listener = 'all';
+    this.state = this.store.getState();
   }
   addToStorage() {
     localStorage.setItem('toDoList', JSON.stringify([...this.todoData]));
   }
   render() {
+    this.store.subscribe(() => {
+      this.state = todo.store.getState();
+    });
     this.inputField.value = '';
     this.todoList.textContent = '';
-    this.todoData.forEach(this.filterItem, this);
+    this.todoData.forEach(this.filterItem.bind(this), this);
     this.addToStorage();
   }
   createElement(todo, check) {
@@ -37,25 +41,25 @@ class Todo {
     this.todoList.append(li);
   }
 
-  filterItem = (todo) => {
+  filterItem(todo) {
     let check;
     if (todo.completed == true) {
       check = 'check';
     } else {
       check = 'uncheck';
     }
-    if (this.listener === 'all') {
+    if (this.state === 'all') {
       this.createElement(todo, check);
-    } else if (this.listener === 'completed') {
+    } else if (this.state === 'completed') {
       if (todo.completed === true) {
         this.createElement(todo, check);
       }
-    } else if (this.listener === 'execute') {
+    } else if (this.state === 'execute') {
       if (todo.completed === false) {
         this.createElement(todo, check);
       }
     }
-  };
+  }
   addTodo(e) {
     e.preventDefault();
     if (this.inputField.value.trim()) {
@@ -103,18 +107,15 @@ class Todo {
         this.deleteItem(key);
       }
       if (target === this.executeBtn) {
-        // store.dispatch(execute());
-        this.listener = 'execute';
+        this.store.dispatch(execute());
         this.render();
       }
       if (target === this.completedBtn) {
-        // store.dispatch(competed());
-        this.listener = 'completed';
+        this.store.dispatch(completed());
         this.render();
       }
       if (target === this.allBtn) {
-        // store.dispatch(all());
-        this.listener = 'all';
+        this.store.dispatch(all());
         this.render();
       }
     });
@@ -129,8 +130,5 @@ class Todo {
 const todo = new Todo();
 todo.init();
 todo.handler();
-// todo.store.subscribe(() => {
-//   const state = store.getState();
-//   todo.listener = state;
-// });
-// todo.store.dispatch({ type: 'ALL' });
+
+todo.store.dispatch({ type: 'all' });

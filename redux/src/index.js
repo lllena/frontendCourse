@@ -44,4 +44,4 @@ store.subscribe(() => {
   );
 });
 
-store.dispatch({ type: "INIT_APPLICATION" });
+store.dispatch({ type: "all" });

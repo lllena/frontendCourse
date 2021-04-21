@@ -1,6 +1,6 @@
 import { EXECUTE, COMPLETED, ALL } from './types';
 
-export function counterReducer(state = '', action) {
+export function createReducer(state = 'all', action) {
   if (action.type === EXECUTE) {
     return (state = 'execute');
   } else if (action.type === COMPLETED) {
