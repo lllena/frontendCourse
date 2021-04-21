@@ -1,7 +1,9 @@
 'use strict';
+// import { rootReducer } from './createStore';
 
 class Todo {
   constructor() {
+    // this.store = createStore(rootReducer);
     this.input = document.querySelector('.input');
     this.executeBtn = document.querySelector('.button-execute');
     this.completedBtn = document.querySelector('.button-completed');
@@ -9,6 +11,7 @@ class Todo {
     this.inputField = document.querySelector('.input-field');
     this.todoList = document.querySelector('.todo-list');
     this.todoData = new Map(JSON.parse(localStorage.getItem('toDoList')));
+    this.listener = 'all';
   }
   addToStorage() {
     localStorage.setItem('toDoList', JSON.stringify([...this.todoData]));
@@ -16,16 +19,10 @@ class Todo {
   render() {
     this.inputField.value = '';
     this.todoList.textContent = '';
-    this.todoData.forEach(this.createItem, this);
+    this.todoData.forEach(this.filterItem, this);
     this.addToStorage();
   }
-  createItem = (todo) => {
-    let check;
-    if (todo.completed == true) {
-      check = 'check';
-    } else {
-      check = 'uncheck';
-    }
+  createElement(todo, check) {
     const li = document.createElement('li');
     li.setAttribute('data-id', todo.key);
     li.classList.add('todo-item');
@@ -38,6 +35,26 @@ class Todo {
         </div>`,
     );
     this.todoList.append(li);
+  }
+
+  filterItem = (todo) => {
+    let check;
+    if (todo.completed == true) {
+      check = 'check';
+    } else {
+      check = 'uncheck';
+    }
+    if (this.listener === 'all') {
+      this.createElement(todo, check);
+    } else if (this.listener === 'completed') {
+      if (todo.completed === true) {
+        this.createElement(todo, check);
+      }
+    } else if (this.listener === 'execute') {
+      if (todo.completed === false) {
+        this.createElement(todo, check);
+      }
+    }
   };
   addTodo(e) {
     e.preventDefault();
@@ -86,16 +103,18 @@ class Todo {
         this.deleteItem(key);
       }
       if (target === this.executeBtn) {
-        console.log('execute');
-        // this.arrExecuteItem();
-        for (const [key, value] of this.todoData) {
-          console.log(value.completed);
-        }
+        // store.dispatch(execute());
+        this.listener = 'execute';
+        this.render();
       }
       if (target === this.completedBtn) {
-        console.log('completed');
+        // store.dispatch(competed());
+        this.listener = 'completed';
+        this.render();
       }
       if (target === this.allBtn) {
+        // store.dispatch(all());
+        this.listener = 'all';
         this.render();
       }
     });
@@ -110,3 +129,8 @@ class Todo {
 const todo = new Todo();
 todo.init();
 todo.handler();
+// todo.store.subscribe(() => {
+//   const state = store.getState();
+//   todo.listener = state;
+// });
+// todo.store.dispatch({ type: 'ALL' });

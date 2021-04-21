@@ -1,43 +1,18 @@
-import { CHANGE_THEME, DECREMENT, DISABLE_BUTTONS, ENABLE_BUTTONS, INCREMENT } from "./types";
+import { EXECUTE, COMPLETED, ALL } from './types';
 
-export function increment() {
+export function execute() {
   return {
-    type: INCREMENT,
+    type: EXECUTE,
   };
 }
-export function decrement() {
+export function completed() {
   return {
-    type: DECREMENT,
-  };
-}
-
-
-export function enableButtons(newTheme) {
-  return {
-    type: ENABLE_BUTTONS,
+    type: COMPLETED,
   };
 }
 
-export function disableButtons(newTheme) {
+export function all() {
   return {
-    type: DISABLE_BUTTONS,
-  };
-}
-
-
-export function changeTheme(newTheme) {
-  return {
-    type: CHANGE_THEME,
-    payload: newTheme,
-  };
-}
-
-export function asyncIncrement() {
-  return function (dispatch) {
-    dispatch(disableButtons());
-    setTimeout(() => {
-      dispatch(increment());
-      dispatch(enableButtons());
-    }, 2000);
+    type: ALL,
   };
 }
