@@ -1,40 +1,38 @@
 .slider-container {
   display: flex;
-  align-items: center;
-  margin: 0 auto;
-  padding: 0;
+  width: 500px;
+  height: 400px;
   overflow: hidden;
-  vertical-align: middle;
+  align-items: center;
 }
+
 .slider-wrapper {
-  width: 100%;
-  display: flex;
-  will-change: transform;
-  text-align: center;
-  margin: auto;
   position: relative;
+  display: flex;
+  width: 100%;
+  text-align: center;
 }
-.slider-arrow {
-  width: 25px;
-  height: 25px;
-  padding-top: 5px;
+
+.slider-wrapper--arrow {
   position: absolute;
+  display: flex;
+  width: inherit;
+  height: 30px;
+  justify-content: space-between;
+}
+
+.slider-arrow {
+  width: 30px;
+  background-size: 34px;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 50%;
-  transition: background-color 0.2s;
-  text-align: center;
   cursor: pointer;
-  color: aliceblue;
-  z-index: 5;
-  background-repeat: no-repeat;
-  background-size: 34px;
-  -webkit-transition: background-color 0.2s;
 }
 .slider-arrow--prev {
-  background-image: url(icons/left-arrow.svg);
   background-position: 25% 50%;
+  background-image: url(icons/left-arrow.svg);
 }
 .slider-arrow--next {
-  background-image: url(icons/right-arrow.svg);
   background-position: 75% 50%;
+  background-image: url(icons/right-arrow.svg);
 }

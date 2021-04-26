@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="slider-style.css" />
-    <title>Document</title>
+    <title>Slider</title>
   </head>
   <body>
     <!-- главный контейнер слайдера -->
@@ -13,39 +13,33 @@
       <!-- обертка для слайдов -->
       <div class="slider-wrapper">
         <!-- слайды -->
-        <div class="slider-item slider-item-active">Slide1</div>
+        <div class="slider-item">Slide1</div>
         <div class="slider-item">Slide2</div>
         <div class="slider-item">Slide3</div>
         <div class="slider-item">Slide4</div>
         <div class="slider-item">Slide5</div>
         <div class="slider-item">Slide6</div>
+        <div class="slider-item">Slide7</div>
       </div>
 
-      <!-- навигация слайдера -->
-      <div class="slider-dots"></div>
-
       <!-- управление слайдами -->
-      <a href="#" class="slider-arrow slider-arrow--prev" id="arrow-left"></a>
-      <a href="#" class="slider-arrow slider-arrow--next" id="arrow-right"></a>
-      <!-- <div class="slider-arrow slider-arrow--prev"><</div>
-      <div class="slider-arrow slider-arrow--next">></div> -->
+      <div class="slider-wrapper--arrow">
+        <a href="#" class="slider-arrow slider-arrow--prev" id="arrow-left"></a>
+        <a href="#" class="slider-arrow slider-arrow--next" id="arrow-right"></a>
+      </div>
+
     </div>
 
     <script src="slider-plagin.js"></script>
     <script>
       const slider = new Slider(
         {
-          widthContainer: 500,
-          heightContainer: 300,
-        },
-        {
-          infinite: true,
-          slidesToShow: 3,
+          slidesToShow: 2,
           slidesToScrool: 1,
           autoplay: true,
           pauseOnHover: true,
           speed: 1,
-          autoplaySpeed: 3000,
+          autoplaySpeed: 1000,
         }
       );
       slider.init();
