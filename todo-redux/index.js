@@ -6,6 +6,7 @@ import { execute, completed, all, add, remove, toggleComplete } from './redux/ac
 class Todo {
   constructor() {
     this.store = createStore(rootReducer);
+    this.state = this.store.getState();
     this.form = document.querySelector('.form');
     this.executeBtn = document.querySelector('.button-execute');
     this.completedBtn = document.querySelector('.button-completed');
@@ -13,7 +14,6 @@ class Todo {
     this.input = document.querySelector('.input');
     this.todoList = document.querySelector('.todo-list');
     this.todoData = new Map(JSON.parse(localStorage.getItem('toDoList')));
-    this.state = this.store.getState();
     this.main = document.querySelector('.main');
   }
 
@@ -40,7 +40,7 @@ class Todo {
   }
 
   tabItems(item) {
-    switch (this.state) {
+    switch (this.state.tabs) {
       case 'all':
         this.createElement(item);
         break;
@@ -108,7 +108,7 @@ class Todo {
   }
 
   init() {
-    todo.render();
+    this.render();
     this.form.addEventListener('input', this.searchItem.bind(this));
     this.form.addEventListener('submit', this.addTodo.bind(this));
   }
@@ -142,7 +142,13 @@ class Todo {
   }
 
   render() {
+    console.log(this.state);
     this.store.subscribe(() => (this.state = this.store.getState()));
+   
+    this.store.subscribe(() => {
+      console.log(this.store.getState());
+    });
+    
     this.todoList.textContent = '';
     this.todoData.forEach(this.tabItems.bind(this), this);
     this.addToStorage();
