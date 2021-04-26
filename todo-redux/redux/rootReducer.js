@@ -1,43 +1,49 @@
 import { combineReducers } from 'redux';
-import { EXECUTE_TASK, COMPLETED_TASK, ALL_TASK, ADD, REMOVE, TOGGLE_COMPLETE } from './types';
+import { EXECUTE_TASK, COMPLETED_TASK, ALL_TASK, ADD, REMOVE, TOGGLE_COMPLETE, REPEAT } from './types';
 
 function tabsReducer(state = 'all', action) {
   switch (action.type) {
     case EXECUTE_TASK:
       return (state = 'execute');
-    
+
     case COMPLETED_TASK:
       return (state = 'completed');
-    
+
     case ALL_TASK:
       return (state = 'all');
-    
+
     default:
       return state;
   }
 }
 
-function itemReducer(state = [], action) {
+function itemReducer(state = new Map(), action) {
   switch (action.type) {
     case ADD:
-      return [...state, action.payload];
+      state.set(action.payload.key, action.payload.value);
+      break;
 
     case REMOVE:
-      return [...state.filter((e) => e.id !== action.payload)];
+      state.delete(action.payload);
+      break;
 
     case TOGGLE_COMPLETE:
-      return [
-        ...state.map((e) => {
-          if (e.id === action.payload) {
-            e.isComplete = !e.isComplete;
-          }
-          return e;
-        }),
-      ];
+      state.forEach((value, key) => {
+        if (key === action.payload) {
+          value.completed = !value.completed;
+        }
+      });
+      break;
 
-    default:
-      return state;
+    case REPEAT:
+      state.forEach((value, key) => {
+        if (key === action.payload.key) {
+          value.repeat = action.payload.bool;
+        }
+      });
+      break;
   }
+  return state;
 }
 
 export const rootReducer = combineReducers({

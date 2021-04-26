@@ -1,24 +1,24 @@
 import './style.css';
 import { createStore } from 'redux';
 import { rootReducer } from './redux/rootReducer';
-import { execute, completed, all, add, remove, toggleComplete } from './redux/actions';
+import { execute, completed, all, add, remove, toggleComplete, repeat } from './redux/actions';
 
 class Todo {
   constructor() {
     this.store = createStore(rootReducer);
     this.state = this.store.getState();
+    this.state.listItem = new Map(JSON.parse(localStorage.getItem('toDoList')));
     this.form = document.querySelector('.form');
     this.executeBtn = document.querySelector('.button-execute');
     this.completedBtn = document.querySelector('.button-completed');
     this.allBtn = document.querySelector('.button-all');
     this.input = document.querySelector('.input');
     this.todoList = document.querySelector('.todo-list');
-    this.todoData = new Map(JSON.parse(localStorage.getItem('toDoList')));
     this.main = document.querySelector('.main');
   }
 
   addToStorage() {
-    localStorage.setItem('toDoList', JSON.stringify([...this.todoData]));
+    localStorage.setItem('toDoList', JSON.stringify([...this.state.listItem]));
   }
 
   generateKey() {
@@ -65,50 +65,45 @@ class Todo {
   }
 
   clear(item) {
-    item.repeat = false;
-  }
-
-  addGreen(item) {
-    if (item.value.match(this.reg) && this.input.value !== '') {
-      this.store.dispatch(all());
-      item.repeat = true;
-    } else {
-      item.repeat = false;
-    }
-  }
-
-  deleteItem(key) {
-    this.todoData.forEach((item, index) => {
-      if (item.key !== key) return;
-      this.todoData.delete(index);
-    });
-  }
-
-  completedItem(key) {
-    this.todoData.forEach((item) => {
-      if (item.key !== key) return;
-      item.completed = !item.completed;
-    });
+    this.store.dispatch(repeat(item.key, false));
   }
 
   searchItem(e) {
     this.reg = new RegExp(e.target.value, true ? 'gi' : '');
-    this.setItem(this.todoData, this.addGreen);
+    this.setItem(this.state.listItem, this.addGreen);
     this.render();
+  }
+
+  addGreen(item) {
+    this.store.dispatch(all());
+    if (item.value.match(this.reg) && this.input.value !== '') {
+      this.store.dispatch(repeat(item.key, true));
+    } else {
+      this.store.dispatch(repeat(item.key, false));
+    }
+  }
+
+  deleteItem(key) {
+    this.store.dispatch(remove(key));
+  }
+
+  completedItem(key) {
+    this.store.dispatch(toggleComplete(key));
   }
 
   addTodo(e) {
     e.preventDefault();
     if (!this.input.value.trim()) return;
     const newTodo = this.exampleItem();
-    this.todoData.set(newTodo.key, newTodo);
+    this.store.dispatch(add(newTodo.key, newTodo));
     this.input.value = '';
-    this.setItem(this.todoData, this.clear);
+    this.setItem(this.state.listItem, this.clear);
     this.render();
   }
 
   init() {
     this.render();
+    this.store.subscribe(() => (this.state = this.store.getState()));
     this.form.addEventListener('input', this.searchItem.bind(this));
     this.form.addEventListener('submit', this.addTodo.bind(this));
   }
@@ -142,15 +137,8 @@ class Todo {
   }
 
   render() {
-    console.log(this.state);
-    this.store.subscribe(() => (this.state = this.store.getState()));
-   
-    this.store.subscribe(() => {
-      console.log(this.store.getState());
-    });
-    
     this.todoList.textContent = '';
-    this.todoData.forEach(this.tabItems.bind(this), this);
+    this.state.listItem.forEach(this.tabItems.bind(this), this);
     this.addToStorage();
   }
 }

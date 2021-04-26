@@ -1,10 +1,11 @@
-import { EXECUTE_TASK, COMPLETED_TASK, ALL_TASK, ADD, REMOVE, TOGGLE_COMPLETE } from './types';
+import { EXECUTE_TASK, COMPLETED_TASK, ALL_TASK, ADD, REMOVE, TOGGLE_COMPLETE, REPEAT } from './types';
 
 export function execute() {
   return {
     type: EXECUTE_TASK,
   };
 }
+
 export function completed() {
   return {
     type: COMPLETED_TASK,
@@ -17,21 +18,29 @@ export function all() {
   };
 }
 
-export function add() {
+export function add(key, { value, completed, repeat }) {
   return {
     type: ADD,
     payload: {
-      text: 'sdfsdf',
-      id: 0,
-      isComplete: false,
+      key,
+      value: {
+        key,
+        value,
+        completed,
+        repeat,
+      },
     },
   };
 }
 
-export function remove() {
-  return { type: REMOVE, payload: 0 };
+export function remove(key) {
+  return { type: REMOVE, payload: key };
 }
 
-export function toggleComplete() {
-  return { type: TOGGLE_COMPLETE, payload: 0 };
+export function toggleComplete(key) {
+  return { type: TOGGLE_COMPLETE, payload: key };
+}
+
+export function repeat(key, bool) {
+  return { type: REPEAT, payload: { key, bool } };
 }
