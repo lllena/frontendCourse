@@ -6,7 +6,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
   mode: 'development',
   entry: {
-    main: './redux/index.js',
+    main: './index.js',
   },
   output: {
     filename: '[name].[contenthash].js',

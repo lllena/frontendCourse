@@ -1,7 +1,7 @@
-import '../style.css';
-import { createStore } from '../node_modules/redux';
-import { createReducer } from './rootReducer';
-import { execute, completed, all } from './actions';
+import './style.css';
+import { createStore } from 'redux';
+import { createReducer } from './redux/rootReducerNew';
+import { add, remove, toggleComplete } from './redux/actionNew';
 
 class Todo {
   constructor() {
@@ -12,9 +12,9 @@ class Todo {
     this.allBtn = document.querySelector('.button-all');
     this.input = document.querySelector('.input');
     this.todoList = document.querySelector('.todo-list');
-    this.todoData = new Map(JSON.parse(localStorage.getItem('toDoList')));
-    this.state = this.store.getState();
+    this.tab = 'all';
     this.main = document.querySelector('.main');
+    this.todoData = new Map(JSON.parse(localStorage.getItem('toDoList')));
   }
 
   addToStorage() {
@@ -40,7 +40,7 @@ class Todo {
   }
 
   tabItems(item) {
-    switch (this.state) {
+    switch (this.tab) {
       case 'all':
         this.createElement(item);
         break;
@@ -70,7 +70,7 @@ class Todo {
 
   addGreen(item) {
     if (item.value.match(this.reg) && this.input.value !== '') {
-      this.store.dispatch(all());
+      // this.store.dispatch(all());
       item.repeat = true;
     } else {
       item.repeat = false;
@@ -118,9 +118,9 @@ class Todo {
       const key = target.closest('.todo-item')?.getAttribute('data-id');
       this.handlerAction(target.classList.value.split(' ')['0'] === 'todo-complete', this.completedItem, key);
       this.handlerAction(target.classList.value === 'todo-remove', this.deleteItem, key);
-      this.handlerAction(target === this.executeBtn, this.store.dispatch, execute());
-      this.handlerAction(target === this.completedBtn, this.store.dispatch, completed());
-      this.handlerAction(target === this.allBtn, this.store.dispatch, all());
+      // this.handlerAction(target === this.executeBtn, this.store.dispatch, execute());
+      // this.handlerAction(target === this.completedBtn, this.store.dispatch, completed());
+      // this.handlerAction(target === this.allBtn, this.store.dispatch, all());
       this.render();
     });
   }
@@ -142,7 +142,7 @@ class Todo {
   }
 
   render() {
-    this.store.subscribe(() => (this.state = this.store.getState()));
+    this.store.subscribe(() => console.log(this.store.getState()));
     this.todoList.textContent = '';
     this.todoData.forEach(this.tabItems.bind(this), this);
     this.addToStorage();
