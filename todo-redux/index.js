@@ -8,7 +8,9 @@ class Todo {
   constructor() {
     this.store = createStore(rootReducer);
     this.state = this.store.getState();
-    this.state.listItem = [...JSON.parse(localStorage.getItem('toDoList'))];
+    this.state.listItem = JSON.parse(localStorage.getItem('toDoList'))
+      ? JSON.parse(localStorage.getItem('toDoList'))
+      : [];
     this.form = document.querySelector('.form');
     this.executeBtn = document.querySelector('.button-execute');
     this.completedBtn = document.querySelector('.button-completed');
