@@ -33,68 +33,51 @@ class Slider {
         .slider-item {
             flex: 0 0 ${this.maxSlides}%;
         }
-        .slider-item {
-            opacity: ${this.fade};
-        }
-        .slider-wrapper {
-            transform: translateX(-${this.position * this.maxSlides}%)
-          }
       `;
     document.head.appendChild(style);
+    this.transformWrappSlide();
   }
 
   prevSlide() {
     this.wrap.style.transition = `transform ${this.speed}s`;
     if (this.position > 0) {
-      this.position = this.position - this.slidesToScrool;
-      this.wrap.style.transform = `translateX(-${
-        this.position * this.maxSlides
-      }%)`;
+      this.changePosition(this.position - this.slidesToScrool);
     }
-    if (!(this.position > 0) && this.infinity) {
-      this.position = this.slides.length + 1 - this.slidesToShow * 2;
-      this.wrap.style.transition = "transform 0s";
-      this.wrap.style.transform = `translateX(-${
-        this.position * this.maxSlides
-      }%)`;
 
-      setTimeout(() => {
-        this.prevSlide();
-      }, 0);
+    if (!(this.position > 0) && this.infinity) {
+      this.wrap.style.transition = "transform 0s";
+      this.changePosition(this.slides.length + 1 - this.slidesToShow * 2);
+      setTimeout(() => { this.prevSlide()}, 0);
     }
+    this.transformWrappSlide();
   }
 
   nextSlide() {
     this.wrap.style.transition = `transform ${this.speed}s`;
     if (this.position < this.slides.length - this.slidesToShow) {
-      if (
-        this.slides.length - (this.position + this.slidesToScrool) >=
-        this.slidesToShow
-      ) {
-        this.position += this.slidesToScrool;
+      if (this.slides.length - (this.position + this.slidesToScrool) >=this.slidesToShow) {
+        this.changePosition(this.position + this.slidesToScrool);
       } else {
-        this.position +=
-          this.slides.length - (this.position + this.slidesToShow);
+        this.changePosition(this.slides.length - this.slidesToShow);
       }
-      this.wrap.style.transform = `translateX(-${
-        this.position * this.maxSlides
-      }%)`;
     }
-    if (
-      !(this.position < this.slides.length - this.slidesToShow) &&
-      this.infinity
-    ) {
-     
-        this.position = this.slidesToShow - 1;
-        this.wrap.style.transition = "transform 0s";
-        this.wrap.style.transform = `translateX(-${
-          this.position * this.maxSlides
-        }%)`;
 
-        setTimeout(() => {
-          this.nextSlide();
-        }, 0);
-      }
+    if (!(this.position < this.slides.length - this.slidesToShow) && this.infinity) {
+      this.wrap.style.transition = "transform 0s";
+      this.changePosition(this.slidesToShow - 1);
+      setTimeout(() => {this.nextSlide()}, 0);
+    }
+    this.transformWrappSlide();
+  }
+
+  changePosition(x) {
+    this.position = x;
+  }
+
+  transformWrappSlide() {
+    this.wrap.style.transform = `translateX(-${
+      this.position * this.maxSlides
+    }%)`;
   }
 
   startSlide() {

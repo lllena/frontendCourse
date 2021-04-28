@@ -1,6 +1,6 @@
 const slider = new Slider({
   infinity: true,
-  slidesToShow: 3,
+  slidesToShow: 4,
   slidesToScrool: 2,
   autoplay: true,
   pauseOnHover: true,
