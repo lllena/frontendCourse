@@ -28,11 +28,13 @@
   border-radius: 50%;
   cursor: pointer;
 }
+
 .slider-arrow--prev {
   background-position: 25% 50%;
-  background-image: url(icons/left-arrow.svg);
+  background-image: url(../icons/left-arrow.svg);
 }
+
 .slider-arrow--next {
   background-position: 75% 50%;
-  background-image: url(icons/right-arrow.svg);
+  background-image: url(../icons/right-arrow.svg);
 }
