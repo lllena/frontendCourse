@@ -1,5 +1,6 @@
 class Slider {
   constructor({
+    infinity = false,
     slidesToShow = 1,
     slidesToScrool = 1,
     autoplay = true,
@@ -7,6 +8,7 @@ class Slider {
     speed = 500,
     autoplaySpeed = 1500,
   }) {
+    this.infinity = infinity;
     this.slidesToShow = slidesToShow;
     this.slidesToScrool = slidesToScrool;
     this.autoplay = autoplay;
@@ -42,19 +44,27 @@ class Slider {
 
   prevSlide() {
     if (this.position > 0) {
-      --this.position;
+      this.position = this.position - this.slidesToScrool;
       this.wrap.style.transform = `translateX(-${
-        this.position * this.maxSlides * this.slidesToScrool
+        this.position * this.maxSlides
       }%)`;
     }
   }
 
   nextSlide() {
     if (this.position < this.slides.length - this.slidesToShow) {
-      ++this.position;
+      if (
+        this.slides.length - (this.position + this.slidesToScrool) >=
+        this.slidesToShow
+      ) {
+        this.position += this.slidesToScrool;
+      } else {
+        this.position +=
+          (this.slides.length - (this.position + this.slidesToShow));
+      }
+      
       this.wrap.style.transform = `translateX(-${
-        this.position * this.maxSlides * this.slidesToScrool
-      }%)`;
+        this.position * this.maxSlides}%)`;
     }
   }
 
