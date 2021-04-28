@@ -18,17 +18,14 @@ export function all() {
   };
 }
 
-export function add(key, { value, completed, repeat }) {
+export function add({ key, value, completed, repeat }) {
   return {
     type: ADD,
     payload: {
       key,
-      value: {
-        key,
-        value,
-        completed,
-        repeat,
-      },
+      value,
+      completed,
+      repeat,
     },
   };
 }

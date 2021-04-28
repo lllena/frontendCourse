@@ -2,12 +2,13 @@ import './style.css';
 import { createStore } from 'redux';
 import { rootReducer } from './redux/rootReducer';
 import { execute, completed, all, add, remove, toggleComplete, repeat } from './redux/actions';
+import { EXECUTE_TASK, COMPLETED_TASK, ALL_TASK } from './redux/types';
 
 class Todo {
   constructor() {
     this.store = createStore(rootReducer);
     this.state = this.store.getState();
-    this.state.listItem = new Map(JSON.parse(localStorage.getItem('toDoList')));
+    this.state.listItem = [...JSON.parse(localStorage.getItem('toDoList'))];
     this.form = document.querySelector('.form');
     this.executeBtn = document.querySelector('.button-execute');
     this.completedBtn = document.querySelector('.button-completed');
@@ -41,13 +42,13 @@ class Todo {
 
   tabItems(item) {
     switch (this.state.tabs) {
-      case 'all':
+      case ALL_TASK:
         this.createElement(item);
         break;
-      case 'completed':
+      case COMPLETED_TASK:
         if (item.completed) this.createElement(item);
         break;
-      case 'execute':
+      case EXECUTE_TASK:
         if (!item.completed) this.createElement(item);
     }
   }
@@ -95,7 +96,7 @@ class Todo {
     e.preventDefault();
     if (!this.input.value.trim()) return;
     const newTodo = this.exampleItem();
-    this.store.dispatch(add(newTodo.key, newTodo));
+    this.store.dispatch(add(newTodo));
     this.input.value = '';
     this.setItem(this.state.listItem, this.clear);
     this.render();

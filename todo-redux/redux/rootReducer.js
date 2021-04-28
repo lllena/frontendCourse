@@ -4,44 +4,46 @@ import { EXECUTE_TASK, COMPLETED_TASK, ALL_TASK, ADD, REMOVE, TOGGLE_COMPLETE, R
 function tabsReducer(state = 'all', action) {
   switch (action.type) {
     case EXECUTE_TASK:
-      return (state = 'execute');
+      return (state = EXECUTE_TASK);
 
     case COMPLETED_TASK:
-      return (state = 'completed');
+      return (state = COMPLETED_TASK);
 
     case ALL_TASK:
-      return (state = 'all');
+      return (state = ALL_TASK);
 
     default:
       return state;
   }
 }
 
-function itemReducer(state = new Map(), action) {
+function itemReducer(state = [], action) {
   switch (action.type) {
     case ADD:
-      state.set(action.payload.key, action.payload.value);
-      break;
+      return [...state, action.payload];
 
     case REMOVE:
-      state.delete(action.payload);
-      break;
+      return [...state.filter((e) => e.key !== action.payload)];
 
     case TOGGLE_COMPLETE:
-      state.forEach((value, key) => {
-        if (key === action.payload) {
-          value.completed = !value.completed;
-        }
-      });
-      break;
+      return [
+        ...state.map((e) => {
+          if (e.key === action.payload) {
+            e.completed = !e.completed;
+          }
+          return e;
+        }),
+      ];
 
     case REPEAT:
-      state.forEach((value, key) => {
-        if (key === action.payload.key) {
-          value.repeat = action.payload.bool;
-        }
-      });
-      break;
+      return [
+        ...state.map((e) => {
+          if (e.key === action.payload.key) {
+            e.repeat = action.payload.bool;
+          }
+          return e;
+        }),
+      ];
   }
   return state;
 }
