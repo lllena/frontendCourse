@@ -41,7 +41,7 @@ class Todo {
   }
 
   tabItems(item) {
-    switch (this.state.tabs) {
+    switch (this.state.tabs.tab) {
       case ALL_TASK:
         this.createElement(item);
         break;
@@ -138,6 +138,7 @@ class Todo {
   }
 
   render() {
+    console.log(this.state)
     this.todoList.textContent = '';
     this.state.listItem.forEach(this.tabItems.bind(this), this);
     this.addToStorage();
