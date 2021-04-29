@@ -138,7 +138,6 @@ class Todo {
   }
 
   render() {
-    console.log(this.state)
     this.todoList.textContent = '';
     this.state.listItem.forEach(this.tabItems.bind(this), this);
     this.addToStorage();
