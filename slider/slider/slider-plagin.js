@@ -47,7 +47,9 @@ class Slider {
     if (!(this.position > 0) && this.infinity) {
       this.wrap.style.transition = "transform 0s";
       this.changePosition(this.slides.length + 1 - this.slidesToShow * 2);
-      setTimeout(() => { this.prevSlide()}, 0);
+      setTimeout(() => {
+        this.prevSlide();
+      }, 0);
     }
     this.transformWrappSlide();
   }
@@ -55,17 +57,33 @@ class Slider {
   nextSlide() {
     this.wrap.style.transition = `transform ${this.speed}s`;
     if (this.position < this.slides.length - this.slidesToShow) {
-      if (this.slides.length - (this.position + this.slidesToScrool) >=this.slidesToShow) {
+      if (
+        this.slides.length - (this.position + this.slidesToScrool) >=
+        this.slidesToShow
+      ) {
         this.changePosition(this.position + this.slidesToScrool);
-      } else {
+      } else if (!this.infinity) {
         this.changePosition(this.slides.length - this.slidesToShow);
+      } else if (this.infinity) {
+        this.wrap.style.transition = "transform 0s";
+        console.log(this.slidesToShow - this.slidesToScrool);
+        this.changePosition(this.slidesToShow+1);
+        // setTimeout(() => {
+        //   this.nextSlide();
+        // }, 0);
       }
     }
 
-    if (!(this.position < this.slides.length - this.slidesToShow) && this.infinity) {
+    if (
+      !(this.position < this.slides.length - this.slidesToShow) &&
+      this.infinity
+    ) {
       this.wrap.style.transition = "transform 0s";
-      this.changePosition(this.slidesToShow - 1);
-      setTimeout(() => {this.nextSlide()}, 0);
+      console.log(this.slidesToShow + this.slidesToScrool);
+      this.changePosition(this.slidesToShow + this.slidesToScrool);
+      // setTimeout(() => {
+      //   this.nextSlide();
+      // }, 0);
     }
     this.transformWrappSlide();
   }
