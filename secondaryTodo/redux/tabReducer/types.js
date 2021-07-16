@@ -1,0 +1,6 @@
+export const SET_ACTIVE_TAB = 'SET_ACTIVE_TAB';
+export const TABS = {
+  ALL_TODO: 'ALL_TODO',
+  COMPLETED_TODO: 'COMPLETED_TODO',
+  UNDONE_TODO: 'UNDONE_TODO',
+};

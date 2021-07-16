@@ -4,11 +4,11 @@ import { rootReducer } from './redux/rootReducer';
 import { execute, completed, all, add, remove, toggleComplete, search } from './redux/actions';
 import { EXECUTE_TASK, COMPLETED_TASK, ALL_TASK } from './redux/types';
 
+const store = createStore(rootReducer);
+const state = store.getState();
+
 class Todo {
   constructor() {
-    this.store = createStore(rootReducer);
-    this.state = this.store.getState();
-    this.state.listItem = localStorage.getItem('toDoList') ? [...JSON.parse(localStorage.getItem('toDoList'))] : [];
     this.form = document.querySelector('.form');
     this.executeBtn = document.querySelector('.button-execute');
     this.completedBtn = document.querySelector('.button-completed');
@@ -60,9 +60,6 @@ class Todo {
     this.todoList.append(li);
   }
 
-  addToStorage() {
-    localStorage.setItem('toDoList', JSON.stringify([...this.state.listItem]));
-  }
 
   generateKey() {
     return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
@@ -72,7 +69,6 @@ class Todo {
     if (completed) return 'check';
     return 'uncheck';
   }
-
 
   setItem(map, func) {
     map.forEach((item) => {
@@ -143,9 +139,6 @@ class Todo {
       this.render();
     });
   }
-
 }
 
 const todo = new Todo();
-todo.init();
-todo.handler();

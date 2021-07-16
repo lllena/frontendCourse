@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { EXECUTE_TASK, COMPLETED_TASK, ALL_TASK, ADD, REMOVE, TOGGLE_COMPLETE, REPEAT } from './types';
+import { EXECUTE_TASK, COMPLETED_TASK, ALL_TASK, ADD, REMOVE, TOGGLE_COMPLETE, SEARCH } from './types';
 
 function tabsReducer(state = { tab: ALL_TASK }, action) {
   switch (action.type) {
@@ -35,7 +35,7 @@ function itemReducer(state = [], action) {
         }),
       ];
 
-    case REPEAT:
+    case SEARCH:
       return [
         ...state.map((e) => {
           if (e.key === action.payload.key) {

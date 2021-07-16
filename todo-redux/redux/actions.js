@@ -1,4 +1,4 @@
-import { EXECUTE_TASK, COMPLETED_TASK, ALL_TASK, ADD, REMOVE, TOGGLE_COMPLETE, REPEAT } from './types';
+import { EXECUTE_TASK, COMPLETED_TASK, ALL_TASK, ADD, REMOVE, TOGGLE_COMPLETE, SEARCH } from './types';
 
 export function execute() {
   return {
@@ -38,6 +38,6 @@ export function toggleComplete(key) {
   return { type: TOGGLE_COMPLETE, payload: key };
 }
 
-export function repeat(key, bool) {
-  return { type: REPEAT, payload: { key, bool } };
+export function search(key, bool) {
+  return { type: SEARCH, payload: { key, bool } };
 }

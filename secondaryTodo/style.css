@@ -2,18 +2,22 @@
   box-sizing: border-box;
   border: none;
 }
+
 :active,
 :hover,
 :focus {
   outline: 0;
   outline-offset: 0;
 }
+
 .input {
   outline: none;
 }
+
 .button:focus {
   outline: none;
 }
+
 ul {
   padding: 4px;
   list-style: none;
@@ -26,6 +30,7 @@ body {
   background-color: #171717;
   border: none;
 }
+
 .nav {
   width: 100%;
   height: 55px;
@@ -33,6 +38,7 @@ body {
   text-align: right;
   background-image: linear-gradient(90deg, #00d8ff, #367ad8);
 }
+
 .logo {
   width: auto;
   padding: 6px 30px;
@@ -41,6 +47,7 @@ body {
   font-size: 25px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
 .main,
 .head {
   display: flex;
@@ -48,11 +55,13 @@ body {
   align-items: center;
   padding-top: 40px;
 }
+
 .form {
   width: 50%;
   text-align: center;
   position: relative;
 }
+
 .input {
   width: 100%;
   height: 40px;
@@ -60,10 +69,12 @@ body {
   border-bottom-right-radius: 15px;
   border-top-right-radius: 15px;
 }
+
 .button {
   background-image: linear-gradient(90deg, #00d8ff, #367ad8);
   color: white;
 }
+
 .input-button {
   height: 44px;
   width: 44px;
@@ -74,6 +85,7 @@ body {
   font-size: 25px;
   font-weight: 700;
 }
+
 .buttons {
   width: 40%;
   text-align: center;
@@ -81,20 +93,39 @@ body {
   justify-content: space-between;
   padding: 40px 0;
 }
+
 .button-nav {
   width: 23%;
   height: 35px;
-  overflow: hidden;
   font-size: 18px;
   border-radius: 5px;
 }
+
+.button-nav--active {
+  position: relative;
+}
+
+.button-nav--active::after {
+  border-radius: 45%;
+  content: '';
+  position: absolute;
+  z-index: 999;
+  bottom: -25px;
+  left: -1px;
+  width: 100%;
+  height: 15px;
+  box-shadow: 0 5px 15px #367ad8;
+}
+
 .todo-container {
   width: 50%;
 }
+
 .todo {
   width: 100%;
   float: left;
 }
+
 .todo-item {
   width: 100%;
   min-height: 40px;
@@ -107,6 +138,7 @@ body {
   padding: 14px 100px 14px 14px;
   margin: 10px 0;
 }
+
 .todo-buttons {
   display: flex;
   justify-content: flex-end;
@@ -127,15 +159,17 @@ body {
 }
 
 .todo-remove {
-  background-image: url(8a1f8c1d8cfc6a261e1bf99955e8d929.png);
+  background-image: url('./img/trash.png');
 }
 
 .todo-complete {
-  background-image: url(6a93ec6a7dec9f2990445774772db722.png);
+  background-image: url('./img/uncheck.png');
 }
+
 .check {
-  background-image: url(a63363a91aef6dce50fe7065c2bc9782.png);
+  background-image: url('./img/check.png');
 }
+
 .green {
   background-color: greenyellow;
 }
@@ -148,6 +182,7 @@ body {
     width: 30%;
   }
 }
+
 @media (max-width: 650px) {
   .form,
   .buttons,
@@ -155,6 +190,7 @@ body {
     width: 75%;
   }
 }
+
 @media (max-width: 400px) {
   .form,
   .buttons,
@@ -162,6 +198,7 @@ body {
     width: 80%;
   }
 }
+
 @media (max-width: 350px) {
   .form,
   .buttons,
@@ -169,4 +206,3 @@ body {
     width: 90%;
   }
 }
-
