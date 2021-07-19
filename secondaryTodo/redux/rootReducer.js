@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import { tabReduser } from './tabReducer/tabReducer'
-import { todoReducer } from './todoReducer/todoReducer'
+import { tabReducer } from './tabReducer/tabReducer';
+import { todoReducer } from './todoReducer/todoReducer';
 
-
-export const rootReducer;
+export default rootReducer = combineReducers({
+  tabs: tabReducer,
+  todos: todoReducer,
+});

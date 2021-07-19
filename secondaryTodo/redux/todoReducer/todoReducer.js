@@ -1,7 +1,7 @@
 import { param } from "jquery";
 import { ADD_TODO, REMOVE_TODO, TOGGLE_PARAM_TODO } from "./types";
 
-export default function todoReducer(state = [], {type, payload}) {
+export function todoReducer(state = [], {type, payload}) {
   switch (type) {
     case ADD_TODO:
           return [...state, payload.data];
