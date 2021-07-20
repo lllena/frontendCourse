@@ -34,7 +34,9 @@ body {
 .nav {
   width: 100%;
   height: 55px;
-  display: block;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   text-align: right;
   background-image: linear-gradient(90deg, #00d8ff, #367ad8);
 }
@@ -54,6 +56,7 @@ body {
   flex-direction: column;
   align-items: center;
   padding-top: 40px;
+  position: relative;
 }
 
 .form {
@@ -86,8 +89,17 @@ body {
   font-weight: 700;
 }
 
+.searchBtn {
+  height: 44px;
+  position: absolute;
+  border-radius: 50%;
+  width: 44px;
+  top: -1px;
+  right: -50px;
+}
+
 .buttons {
-  width: 40%;
+  width: 55%;
   text-align: center;
   display: flex;
   justify-content: space-between;
@@ -170,8 +182,22 @@ body {
   background-image: url('./img/check.png');
 }
 
+.todo-important {
+  background-image: url('./img/unimportant.png');
+}
+
+.important {
+  background-image: url('./img/important.png');
+}
+
 .green {
   background-color: greenyellow;
+}
+
+.error {
+  position: absolute;
+  color: #ce0707;
+  bottom: -30px;
 }
 
 @media (max-width: 750px) {

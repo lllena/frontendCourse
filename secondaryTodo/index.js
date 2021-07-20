@@ -1,144 +1,157 @@
 import './style.css';
 import { createStore } from 'redux';
-import { rootReducer } from './redux/rootReducer';
-import { execute, completed, all, add, remove, toggleComplete, search } from './redux/actions';
-import { EXECUTE_TASK, COMPLETED_TASK, ALL_TASK } from './redux/types';
+import reducer from './redux/rootReducer';
+import { setActiveTab } from './redux/tabReducer/actions';
+import { addTodo, removeTodo, toggleParamTodo } from './redux/todoReducer/actions';
+import { TABS } from './redux/tabReducer/types';
 
-const store = createStore(rootReducer);
-const state = store.getState();
+const store = createStore(reducer);
+let state = store.getState();
+store.subscribe(() => (state = store.getState()));
 
 class Todo {
   constructor() {
+    this.buttons = document.querySelector('.buttons');
+    this.searchBtn = document.querySelector('.searchBtn');
+    this.search = document.querySelector('.search');
     this.form = document.querySelector('.form');
-    this.executeBtn = document.querySelector('.button-execute');
-    this.completedBtn = document.querySelector('.button-completed');
-    this.allBtn = document.querySelector('.button-all');
     this.input = document.querySelector('.input');
+    this.error = document.querySelector('.error');
     this.todoList = document.querySelector('.todo-list');
-    this.main = document.querySelector('.main');
   }
 
   init() {
+    this.handlerButtonNavigation();
+    this.handlerButtonAdd();
+    this.handlerButtonTodos();
+    this.searchItem();
     this.render();
-    this.store.subscribe(() => (this.state = this.store.getState()));
-    this.form.addEventListener('input', this.searchItem.bind(this));
-    this.form.addEventListener('submit', this.addTodo.bind(this));
   }
 
   render() {
+    this.input.value = '';
     this.todoList.textContent = '';
-    this.state.listItem.forEach(this.tabItems.bind(this), this);
-    this.addToStorage();
+    let arrTodos = this.getTodos() || [];
+    arrTodos.forEach((todo) => this.createElement(todo));
   }
 
-  tabItems(item) {
-    switch (this.state.tabs.tab) {
-      case ALL_TASK:
-        this.createElement(item);
-        break;
-      case COMPLETED_TASK:
-        if (item.completed) this.createElement(item);
-        break;
-      case EXECUTE_TASK:
-        if (!item.completed) this.createElement(item);
+  getTodos() {
+    switch (state.tabs) {
+      case TABS.ALL_TODO:
+        return state.todos;
+      case TABS.COMPLETED_TODO:
+        return state.todos.filter((item) => item.completed);
+      case TABS.UNDONE_TODO:
+        return state.todos.filter((item) => !item.completed);
+      case TABS.IMPORTANT_TODO:
+        return state.todos.filter((item) => item.important);
+      default:
+        return state.todos;
     }
   }
 
   createElement(todo) {
     const li = document.createElement('li');
-    li.setAttribute('data-id', todo.key);
+    li.setAttribute('data-id', todo.id);
     li.classList.add('todo-item');
     if (todo.repeat) li.classList.add('green');
     li.insertAdjacentHTML(
       'beforeend',
       `<span class="text-todo">${todo.value}</span>
-		<div class="todo-buttons">
-            <button class="todo-remove"></button>
-            <button class="todo-complete ${this.itemCheck(todo.completed)}"></button>
-        </div>`,
+  		<div class="todo-buttons">
+              <button class="todo-remove"></button>
+              <button class="todo-complete ${todo.completed ? 'check' : 'uncheck'}"></button>
+              <button class="todo-important ${todo.important ? 'important' : 'noimportant'}"></button>
+          </div>`,
     );
     this.todoList.append(li);
   }
 
-
-  generateKey() {
-    return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-  }
-
-  itemCheck(completed) {
-    if (completed) return 'check';
-    return 'uncheck';
-  }
-
-  setItem(map, func) {
-    map.forEach((item) => {
-      func.call(this, item);
+  handlerButtonAdd() {
+    this.form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!this.validation()) return;
+      this.createNewTodo();
+      this.changeActiveTab(TABS.ALL_TODO);
+      this.render();
     });
   }
 
-  clear(item) {
-    this.store.dispatch(search(item.key, false));
+  createNewTodo() {
+    const newTodo = this.exampleItem();
+    store.dispatch(addTodo(newTodo));
   }
 
-  searchItem(e) {
-    this.reg = new RegExp(e.target.value, 'gi');
-    this.setItem(this.state.listItem, this.searchRepeat);
-    this.render();
-  }
-
-  searchRepeat(item) {
-    this.store.dispatch(all());
-    if (item.value.match(this.reg) && this.input.value !== '') {
-      this.store.dispatch(search(item.key, true));
-    } else {
-      this.store.dispatch(search(item.key, false));
+  validation() {
+    if (this.input.value.trim() === '') {
+      this.error.textContent = 'The field is empty!';
+      return;
     }
-  }
-
-  deleteItem(key) {
-    this.store.dispatch(remove(key));
-  }
-
-  completedItem(key) {
-    this.store.dispatch(toggleComplete(key));
+    this.error.textContent = '';
+    return 1;
   }
 
   exampleItem() {
     return {
       value: this.input.value,
       completed: false,
-      repeat: false,
-      key: this.generateKey(),
+      important: false,
+      id: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
     };
   }
 
-  addTodo(e) {
-    e.preventDefault();
-    if (!this.input.value.trim()) return;
-    const newTodo = this.exampleItem();
-    this.store.dispatch(add(newTodo));
-    this.input.value = '';
-    this.setItem(this.state.listItem, this.clear);
-    this.render();
+  handlerButtonNavigation() {
+    this.buttons.addEventListener('click', ({ target }) => {
+      if (target.closest('button')) {
+        this.changeActiveTab(target?.getAttribute('data-id'));
+        this.render();
+      }
+    });
   }
 
-  handlerAction(bool, func, key = '') {
-    if (bool) {
-      func.call(this, key);
-    }
+  changeActiveTab(tabName) {
+    this.buttons.querySelector(`button[data-id = ${state.tabs}]`).classList.remove('button-nav--active');
+    store.dispatch(setActiveTab(tabName));
+    this.buttons.querySelector(`button[data-id = ${state.tabs}]`).classList.add('button-nav--active');
   }
 
-  handler() {
-    this.main.addEventListener('click', ({ target }) => {
-      const key = target.closest('.todo-item')?.getAttribute('data-id');
-      this.handlerAction(target.classList.value.split(' ')['0'] === 'todo-complete', this.completedItem, key);
-      this.handlerAction(target.classList.value === 'todo-remove', this.deleteItem, key);
-      this.handlerAction(target === this.executeBtn, this.store.dispatch, execute());
-      this.handlerAction(target === this.completedBtn, this.store.dispatch, completed());
-      this.handlerAction(target === this.allBtn, this.store.dispatch, all());
+  handlerButtonTodos() {
+    this.todoList.addEventListener('click', ({ target }) => {
+      const idTodo = target.closest('.todo-item')?.getAttribute('data-id');
+      switch (target.classList.value.split(' ')['0']) {
+        case 'todo-remove':
+          store.dispatch(removeTodo(idTodo));
+          break;
+        case 'todo-complete':
+          store.dispatch(toggleParamTodo(idTodo, 'completed'));
+          break;
+        case 'todo-important':
+          store.dispatch(toggleParamTodo(idTodo, 'important'));
+      }
       this.render();
+    });
+  }
+
+  searchItem() {
+    this.input.addEventListener('input', () => {
+      this.changeActiveTab(TABS.ALL_TODO);
+      if (this.validation()) {
+        this.reg = new RegExp(this.input.value, 'gi');
+        state.todos.forEach((todo) => {
+          if (todo.value.match(this.reg)) {
+            this.todoList.querySelector(`.todo-item[data-id=${todo.id}]`).classList.add('green');
+          } else {
+            this.todoList.querySelector(`.todo-item[data-id=${todo.id}]`).classList.remove('green');
+          }
+        });
+      } else {
+        state.todos.forEach((todo) => {
+          this.todoList.querySelector(`.todo-item[data-id=${todo.id}]`).classList.remove('green');
+        });
+      }
     });
   }
 }
 
 const todo = new Todo();
+todo.init();

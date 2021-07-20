@@ -13,16 +13,18 @@
 
     <section class="head">
       <form class="form">
-        <label></label><input type="text" class="input" placeholder="Add new task..."/></label>
+        <input type="text" class="input" placeholder="Add new task..." />
         <button class="button input-button">+</button>
       </form>
+      <span class="error"></span>
     </section>
 
     <section class="main">
       <div class="buttons">
-        <button class="button button-nav button-execute button-nav--active">left</button>
-        <button class="button button-nav button-completed">done</button>
-        <button class="button button-nav button-all">all</button>
+        <button data-id="IMPORTANT_TODO" class="button button-nav button-important">important</button>
+        <button data-id="UNDONE_TODO" class="button button-nav button-undone">undone</button>
+        <button data-id="COMPLETED_TODO" class="button button-nav button-completed">completed</button>
+        <button data-id="ALL_TODO" class="button button-nav button-all button-nav--active">all</button>
       </div>
       <div class="todo-container">
         <ul class="todo todo-list" id="todo"></ul>
