@@ -12,8 +12,6 @@ store.subscribe(() => (state = store.getState()));
 class Todo {
   constructor() {
     this.buttons = document.querySelector('.buttons');
-    this.searchBtn = document.querySelector('.searchBtn');
-    this.search = document.querySelector('.search');
     this.form = document.querySelector('.form');
     this.input = document.querySelector('.input');
     this.error = document.querySelector('.error');
@@ -54,7 +52,6 @@ class Todo {
     const li = document.createElement('li');
     li.setAttribute('data-id', todo.id);
     li.classList.add('todo-item');
-    if (todo.repeat) li.classList.add('green');
     li.insertAdjacentHTML(
       'beforeend',
       `<span class="text-todo">${todo.value}</span>
