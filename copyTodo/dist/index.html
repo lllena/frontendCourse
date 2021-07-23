@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDo</title>
+  <script defer src="main.a2595e15bb5679943f16.js"></script><link href="main.cf0591a42164575f5714.css" rel="stylesheet"></head>
+  <body>
+    <nav class="nav">
+      <div class="logo">ToDo</div>
+    </nav>
+
+    <section class="head">
+      <div class="form">
+        <input type="text" class="input" placeholder="Add new task..." />
+        <button class="button input-button hide">+</button>
+      </div>
+      <span class="error"></span>
+    </section>
+
+    <section class="main">
+      <div class="buttons">
+        <button data-id="IMPORTANT_TODO" class="button button-nav button-important">important</button>
+        <button data-id="UNDONE_TODO" class="button button-nav button-undone">undone</button>
+        <button data-id="COMPLETED_TODO" class="button button-nav button-completed">completed</button>
+        <button data-id="ALL_TODO" class="button button-nav button-all button-nav--active">all</button>
+      </div>
+      <div class="todo-container">
+        <ul class="todo todo-list" id="todo"></ul>
+      </div>
+    </section>
+  </body>
+</html>
