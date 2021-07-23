@@ -2,11 +2,12 @@ import { store } from '..';
 import { addClass, removeClass } from '../utils';
 
 export const searchTodo = () => {
-  const stateTab = store.getState().todos;
   const getTodo = (dataID) => document.getElementById(dataID);
 
   const searchItem = ({ target }) => {
-    const reg = new RegExp(target.value, 'gi');
+    const stateTab = store.getState().todos;
+      const reg = new RegExp(target.value, 'gi');
+      
     if (target.value) {
       stateTab.forEach((todo) => {
         if (todo.value.match(reg)) {
@@ -17,7 +18,8 @@ export const searchTodo = () => {
       });
     } else {
       stateTab.forEach((todo) => removeClass(getTodo(todo.id), 'green'));
-    }
+      }
+      
   };
 
   const input = document.querySelector('.input');

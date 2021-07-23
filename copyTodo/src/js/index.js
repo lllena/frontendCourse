@@ -15,8 +15,8 @@ store.subscribe(() => {
   addToStorage(store.getState().todos);
 });
 
+searchTodo();
 outTodo(filterTodo());
 addedTodo();
 manageTodo();
 manageTab();
-searchTodo();
