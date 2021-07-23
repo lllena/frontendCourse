@@ -1,6 +1,8 @@
 import { ADD_TODO, REMOVE_TODO, TOGGLE_PARAM_TODO } from './types';
 
-export function todoReducer(state = [], { type, payload }) {
+const initialState = localStorage.getItem('toDoList') ? [...JSON.parse(localStorage.getItem('toDoList'))] : [];
+
+export function todoReducer(state = initialState, { type, payload }) {
   switch (type) {
     case ADD_TODO:
       return [...state, payload.data];

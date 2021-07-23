@@ -6,12 +6,15 @@ import { addedTodo } from './modules/addedTodo';
 import { manageTodo } from './modules/manageTodo';
 import { manageTab } from './modules/manageTab';
 import { filterTodo } from './modules/getTodo';
+import { addToStorage } from './utils';
 
 export const store = createStore(reducer);
 store.subscribe(() => {
   outTodo(filterTodo());
+  addToStorage(store.getState().todos);
 });
 
+outTodo(filterTodo());
 addedTodo();
 manageTodo();
 manageTab();

@@ -8,3 +8,7 @@ export const renderInDocument = ($el, selector) => {
 
 export const generationKey = () =>
   Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+
+export const addToStorage = (arrTodo) => {
+  localStorage.setItem('toDoList', JSON.stringify([...arrTodo]));
+};

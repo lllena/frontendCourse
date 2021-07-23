@@ -1,4 +1,6 @@
 import { store } from '..';
+import { setActiveTab } from '../redux/tabReducer/actions';
+import { TABS } from '../redux/tabReducer/types';
 import { addTodo } from '../redux/todoReducer/actions';
 import { generationKey } from '../utils';
 
@@ -20,7 +22,6 @@ export const addedTodo = () => {
         important: false,
       };
       store.dispatch(addTodo(todoData));
-
       input.value = '';
     }
   };
