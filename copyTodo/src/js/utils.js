@@ -12,3 +12,6 @@ export const generationKey = () =>
 export const addToStorage = (arrTodo) => {
   localStorage.setItem('toDoList', JSON.stringify([...arrTodo]));
 };
+
+export const removeClass = ($el, nameClass) => $el.classList.remove(nameClass);
+export const addClass = ($el, nameClass) => $el.classList.add(nameClass);

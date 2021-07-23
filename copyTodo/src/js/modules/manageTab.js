@@ -1,17 +1,16 @@
 import { store } from '..';
 import { setActiveTab } from '../redux/tabReducer/actions';
+import { addClass, removeClass } from '../utils';
 
 export const manageTab = () => {
   const activeTab = () => navButtons.querySelector(`button[data-id = ${store.getState().tabs}]`);
-  const hideActive = () => activeTab().classList.remove('button-nav--active');
-  const showActive = () => activeTab().classList.add('button-nav--active');
 
   const settingsTabHandler = ({ target }) => {
     const getParentButton = () => target.closest('[data-id]');
 
-    hideActive();
+    removeClass(activeTab(), 'button-nav--active');
     getParentButton().dataset.id && store.dispatch(setActiveTab(getParentButton().dataset.id));
-    showActive();
+    addClass(activeTab(), 'button-nav--active');
   };
 
   const navButtons = document.querySelector('.buttons');

@@ -7,6 +7,7 @@ import { manageTodo } from './modules/manageTodo';
 import { manageTab } from './modules/manageTab';
 import { filterTodo } from './modules/getTodo';
 import { addToStorage } from './utils';
+import { searchTodo } from './modules/searchTodo';
 
 export const store = createStore(reducer);
 store.subscribe(() => {
@@ -18,3 +19,4 @@ outTodo(filterTodo());
 addedTodo();
 manageTodo();
 manageTab();
+searchTodo();

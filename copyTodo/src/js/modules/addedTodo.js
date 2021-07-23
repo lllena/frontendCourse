@@ -1,15 +1,13 @@
 import { store } from '..';
-import { setActiveTab } from '../redux/tabReducer/actions';
-import { TABS } from '../redux/tabReducer/types';
 import { addTodo } from '../redux/todoReducer/actions';
-import { generationKey } from '../utils';
+import { addClass, generationKey, removeClass } from '../utils';
 
 export const addedTodo = () => {
   const input = document.querySelector('.input');
   const inputButton = document.querySelector('.input-button');
 
   const handleInput = () => {
-    input.value.trim() !== '' ? inputButton.classList.remove('hide') : inputButton.classList.add('hide');
+    input.value.trim() !== '' ? removeClass(inputButton, 'hide') : addClass(inputButton, 'hide');
   };
 
   const createTodo = () => {
