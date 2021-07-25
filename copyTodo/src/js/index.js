@@ -1,22 +1,22 @@
 import '../css/style.css';
 import { createStore } from 'redux';
 import reducer from './rootReducer';
-import { outTodo } from './modules/Todos/outTodo';
-import { addedTodo } from './modules/Todos/addedTodo';
+import { renderTodoInDocument } from './modules/Todos/renderTodoInDocument';
+import { addTodoItem } from './modules/Todos/addTodoItem';
 import { manageTodo } from './modules/Todos/manageTodo';
 import { manageTab } from './modules/Tabs/manageTab';
-import { filterTodo } from './modules/Todos/getTodo';
+import { getFilterTodos } from './modules/Todos/getFilterTodos';
 import { addToStorage } from './utils';
 import { searchTodo } from './modules/Todos/searchTodo';
 
 export const store = createStore(reducer);
 store.subscribe(() => {
-  outTodo(filterTodo());
+  renderTodoInDocument(getFilterTodos());
   addToStorage(store.getState().todos);
 });
 
-outTodo(filterTodo());
-addedTodo();
+renderTodoInDocument(getFilterTodos());
+addTodoItem();
 searchTodo();
 manageTodo();
 manageTab();

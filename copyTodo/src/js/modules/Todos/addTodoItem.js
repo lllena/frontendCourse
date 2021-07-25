@@ -2,7 +2,7 @@ import { store } from '../..';
 import { addTodo } from './todoReducer/actions';
 import { addClass, generationKey, removeClass } from '../../utils';
 
-export const addedTodo = () => {
+export const addTodoItem = () => {
   const input = document.querySelector('.input');
   const inputButton = document.querySelector('.input-button');
 

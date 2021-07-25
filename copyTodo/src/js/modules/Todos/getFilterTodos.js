@@ -1,7 +1,7 @@
 import { store } from '../..';
 import { TABS } from '../Tabs/tabReducer/types';
 
-export const filterTodo = () => {
+export const getFilterTodos = () => {
   const state = store.getState();
   switch (state.tabs) {
     case TABS.ALL_TODO:
