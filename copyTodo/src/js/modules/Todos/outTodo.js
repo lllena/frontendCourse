@@ -1,5 +1,5 @@
-import { todoNode } from '../components/todoNode';
-import { renderInDocument } from '../utils';
+import { todoNode } from '../../components/todoNode';
+import { renderInDocument } from '../../utils';
 
 export const outTodo = (newArrTodo) => {
   const arrTodo = document.querySelectorAll('.todo-item');

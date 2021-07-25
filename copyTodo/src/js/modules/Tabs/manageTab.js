@@ -1,6 +1,6 @@
-import { store } from '..';
-import { setActiveTab } from '../redux/tabReducer/actions';
-import { addClass, removeClass } from '../utils';
+import { store } from '../../index';
+import { setActiveTab } from './tabReducer/actions';
+import { addClass, removeClass } from '../../utils';
 
 export const manageTab = () => {
   const activeTab = () => navButtons.querySelector(`button[data-id = ${store.getState().tabs}]`);

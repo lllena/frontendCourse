@@ -1,5 +1,5 @@
-import { store } from '..';
-import { TABS } from '../redux/tabReducer/types';
+import { store } from '../..';
+import { TABS } from '../Tabs/tabReducer/types';
 
 export const filterTodo = () => {
   const state = store.getState();

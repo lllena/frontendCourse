@@ -1,6 +1,6 @@
-import { store } from '..';
-import { addTodo } from '../redux/todoReducer/actions';
-import { addClass, generationKey, removeClass } from '../utils';
+import { store } from '../..';
+import { addTodo } from './todoReducer/actions';
+import { addClass, generationKey, removeClass } from '../../utils';
 
 export const addedTodo = () => {
   const input = document.querySelector('.input');

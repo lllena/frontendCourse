@@ -1,5 +1,5 @@
-import { store } from '..';
-import { removeTodo, toggleParamTodo } from '../redux/todoReducer/actions';
+import { store } from '../../index';
+import { removeTodo, toggleParamTodo } from './todoReducer/actions';
 
 export const manageTodo = () => {
   const settingsTodoHandler = ({ target }) => {
