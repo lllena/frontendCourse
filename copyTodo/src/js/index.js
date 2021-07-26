@@ -5,17 +5,17 @@ import { renderTodoInDocument } from './modules/Todos/renderTodoInDocument';
 import { addTodoItem } from './modules/Todos/addTodoItem';
 import { manageTodo } from './modules/Todos/manageTodo';
 import { manageTab } from './modules/Tabs/manageTab';
-import { getFilterTodos } from './modules/Todos/getFilterTodos';
+import { getFiltredTodo } from './modules/Todos/getFiltredTodo';
 import { addToStorage } from './utils';
 import { searchTodo } from './modules/Todos/searchTodo';
 
 export const store = createStore(reducer);
 store.subscribe(() => {
-  renderTodoInDocument(getFilterTodos());
+  renderTodoInDocument(getFiltredTodo());
   addToStorage(store.getState().todos);
 });
 
-renderTodoInDocument(getFilterTodos());
+renderTodoInDocument(getFiltredTodo());
 addTodoItem();
 searchTodo();
 manageTodo();
