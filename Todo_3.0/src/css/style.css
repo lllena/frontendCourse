@@ -171,23 +171,23 @@ body {
 }
 
 .todo-remove {
-  background-image: url('./img/trash.png');
+  background-image: url('../img/trash.png');
 }
 
 .todo-complete {
-  background-image: url('./img/uncheck.png');
+  background-image: url('../img/uncheck.png');
 }
 
 .check {
-  background-image: url('./img/check.png');
+  background-image: url('../img/check.png');
 }
 
 .todo-important {
-  background-image: url('./img/unimportant.png');
+  background-image: url('../img/unimportant.png');
 }
 
 .important {
-  background-image: url('./img/important.png');
+  background-image: url('../img/important.png');
 }
 
 .green {
@@ -198,6 +198,12 @@ body {
   position: absolute;
   color: #ce0707;
   bottom: -30px;
+}
+
+.hide {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
 }
 
 @media (max-width: 750px) {
