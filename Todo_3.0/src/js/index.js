@@ -13,6 +13,7 @@ export const store = createStore(reducer);
 store.subscribe(() => {
   renderTodoInDocument(getFiltredTodo());
   addToStorage(store.getState().todos);
+  manageTodo();
 });
 
 renderTodoInDocument(getFiltredTodo());
