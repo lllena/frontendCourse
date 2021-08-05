@@ -1,6 +1,7 @@
 import { store } from '../..';
 import { addTodo } from './todoReducer/actions';
 import { addClass, generationKey, removeClass } from '../../utils';
+import { setInputValue } from '../Input/inputReducer/action';
 
 export const addTodoItem = () => {
   const input = document.querySelector('.input');
@@ -20,6 +21,7 @@ export const addTodoItem = () => {
         important: false,
       };
       store.dispatch(addTodo(todoData));
+      store.dispatch(setInputValue(''))
       input.value = '';
     }
   };
