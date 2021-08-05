@@ -7,7 +7,7 @@ export const getFiltredTodo = () => {
     case TABS.ALL_TODO:
       return state.todos;
     case TABS.COMPLETED_TODO:
-      return state.todos.filter((item) => item.completed);
+      return state.todos.filter((item) => item.completed) ;
     case TABS.UNDONE_TODO:
       return state.todos.filter((item) => !item.completed);
     case TABS.IMPORTANT_TODO:

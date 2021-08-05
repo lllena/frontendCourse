@@ -6,8 +6,9 @@ export const renderTodoInDocument = (newArrTodo) => {
   if (arrTodo) {
     arrTodo.forEach((todo) => todo.remove());
   }
-
-  newArrTodo.forEach((todo) => {
-    renderInDocument(todoNode(todo), '.todo-list');
-  });
+  if(newArrTodo) {
+    newArrTodo.forEach((todo) => {
+      renderInDocument(todoNode(todo), '.todo-list');
+    });
+  }
 };
