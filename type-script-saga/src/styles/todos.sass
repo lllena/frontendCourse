@@ -1,0 +1,69 @@
+@mixin hidden
+  opacity: 0
+  visibility: hidden
+
+@mixin show
+  opacity: 1
+  visibility: visible
+
+.todos
+  background-color: white
+  width: 220px
+  height: 70px
+  padding: 5px 7px
+  margin-bottom: 10px
+  display: flex
+  align-items: center
+  flex-direction: column
+  position: relative
+
+  &__create-new-task
+    position: absolute
+    font-size: 20px
+    left: 2px
+    bottom: 2px
+    +hidden
+
+  &-delete-button
+    position: absolute
+    top: 2px
+    right: 2px
+    +hidden
+
+  &-info
+    background-color: white
+    position: absolute
+    top: 70px
+    width: 220px
+    z-index: 50
+    transition: opacity .2s, visibility 0.2s
+    box-shadow: 0 11px 10px -4px rgb(34 60 80 / 6%)
+    +hidden
+
+  &-list
+    padding: 0 10px
+
+  &-item
+    display: flex
+    align-items: center
+    justify-content: space-around
+
+    &__title
+      flex-basis: 80%
+
+  &__title
+    font-size: 20px
+    margin: 5px 0
+
+  &__button
+    position: absolute
+    right: 2px
+    bottom: 2px
+
+  &-wrapper
+    display: flex
+    justify-content: space-between
+    padding: 0.44rem
+
+  &-visibility
+    +show
